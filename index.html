@@ -496,7 +496,26 @@
   </div>
 </footer>
 
-<script>
+  async function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+    if (!fname || !email) { alert('Bitte füll mindestens Name und E-Mail aus.'); return; }
+    
+    const res = await fetch('https://formspree.io/f/mpqelkze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: fname, email: email, message: msg })
+    });
+    
+    if (res.ok) {
+      document.getElementById('form-area').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      alert('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+    }
+  }
+</script>
   function submitForm() {
     const fname = document.getElementById('fname').value.trim();
     const email = document.getElementById('email').value.trim();
