@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIMADA Creative</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@200;300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --butter:  #F5EDD0;
+    --butter2: #EFE4B8;
+    --sky:     #6AAABF;
+    --sky-dark:#2E7A94;
+    --sky-pale:#D6EDF5;
+    --beige:   #EDE5D8;
+    --warm:    #D9D0C4;
+    --sand:    #B5A88E;
+    --bark:    #5C5248;
+    --dark:    #1A1714;
+    --white:   #FAF8F4;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 5%;
+    background: rgba(253,250,245,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(200,189,168,0.25);
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--dark); }
+  .logo span { color: var(--sky-dark); }
+  .logo-sub { font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bark); font-weight: 300; font-family: 'DM Sans', sans-serif; display: block; margin-top: 1px; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--bark); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--sky-dark); color: var(--white); padding: 0.6rem 1.6rem; border: none; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; border-radius: 40px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--sky); color: var(--dark); }
+
+  /* SHARED */
+  .label { font-size: 0.63rem; letter-spacing: 3.5px; text-transform: uppercase; color: var(--sky-dark); font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  .label::before, .label::after { content: ''; width: 20px; height: 1px; background: var(--sky-dark); display: block; }
+  h2.title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 500; line-height: 1.15; color: var(--dark); margin-bottom: 1rem; }
+  .sub { color: var(--bark); font-size: 0.88rem; line-height: 1.9; font-weight: 300; }
+  section { padding: 8rem 5%; text-align: center; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(170deg, #F5EDD0 0%, #D6EDF5 50%, #EDE8DC 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 9rem 5% 6rem;
+    position: relative; overflow: hidden;
+  }
+  .blob1 { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(168,206,219,0.4) 0%, transparent 70%); top: -80px; right: -60px; pointer-events: none; }
+  .blob2 { position: absolute; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(245,237,203,0.7) 0%, transparent 70%); bottom: 40px; left: 5%; pointer-events: none; }
+  .blob3 { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(168,206,219,0.25) 0%, transparent 70%); bottom: -40px; right: 15%; pointer-events: none; }
+  .hero-eyebrow { font-size: 0.63rem; letter-spacing: 4px; text-transform: uppercase; color: var(--sky-dark); font-weight: 500; margin-bottom: 2.2rem; display: flex; align-items: center; gap: 1rem; justify-content: center; }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--sky-dark); display: block; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 500; line-height: 1.05; letter-spacing: -1px;
+    color: var(--dark); margin-bottom: 2rem; max-width: 800px;
+  }
+  .hero h1 em { font-style: italic; color: var(--sky-dark); font-weight: 400; }
+  .hero-desc { color: var(--bark); font-size: 0.95rem; line-height: 1.9; font-weight: 300; max-width: 480px; margin: 0 auto 3rem; }
+  .hero-btns { display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 5rem; }
+  .btn-primary { background: var(--butter2); color: var(--dark); padding: 1rem 2.4rem; border: none; border-radius: 40px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--butter); }
+  .btn-outline { background: transparent; border: 1px solid var(--sand); color: var(--bark); padding: 1rem 2.4rem; border-radius: 40px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 300; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--sky-dark); color: var(--sky-dark); }
+
+  /* STAT PILLS */
+  .stat-pills { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+  .pill { background: rgba(253,250,245,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(200,189,168,0.4); border-radius: 60px; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
+  .pill-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--dark); line-height: 1; }
+  .pill-label { font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bark); font-weight: 300; line-height: 1.4; text-align: left; }
+
+  /* MARQUEE */
+  .marquee-wrap { overflow: hidden; background: var(--butter2); padding: 0.95rem 0; border-top: 1px solid rgba(200,189,168,0.4); border-bottom: 1px solid rgba(200,189,168,0.4); }
+  .marquee-track { display: flex; gap: 3rem; width: max-content; animation: marquee 24s linear infinite; }
+  .marquee-item { white-space: nowrap; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bark); font-weight: 300; display: flex; align-items: center; gap: 3rem; }
+  .marquee-item::after { content: '◦'; color: var(--sky-dark); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* PHILOSOPHY */
+  #philosophy { background: var(--beige); }
+  #philosophy .sub { max-width: 520px; margin: 0 auto 4rem; }
+  .phil-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
+  .phil-card { background: var(--white); border-radius: 16px; padding: 2.5rem 1.8rem; text-align: left; transition: transform 0.3s; }
+  .phil-card:hover { transform: translateY(-4px); }
+  .phil-card:nth-child(2) { background: var(--sky-pale); }
+  .phil-card:nth-child(4) { background: var(--butter); }
+  .phil-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--sky-dark); margin-bottom: 1rem; }
+  .phil-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--dark); }
+  .phil-card p { color: var(--bark); font-size: 0.82rem; line-height: 1.8; font-weight: 300; }
+
+  /* FOR WHOM */
+  #fuerwen { background: var(--white); }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+  #services .sub { max-width: 480px; margin: 0 auto 4rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1100px; margin: 0 auto; text-align: left; }
+  .service-card { border-radius: 16px; padding: 2.8rem 2.2rem; transition: all 0.3s; }
+  .service-card:nth-child(1) { background: linear-gradient(145deg, #D6EDF5 0%, #F5EDD0 100%); }
+  .service-card:nth-child(2) { background: linear-gradient(145deg, #F5EDD0 0%, #EDE8DC 100%); }
+  .service-card:nth-child(3) { background: linear-gradient(145deg, #E4EFE8 0%, #D6EDF5 100%); }
+  .service-card:nth-child(4) { background: linear-gradient(145deg, #D6EDF5 0%, #F5EDD0 100%); }
+  .service-card:nth-child(5) { background: linear-gradient(145deg, #F5EDD0 0%, #E4EFE8 100%); }
+  .service-card:nth-child(6) { background: linear-gradient(145deg, #F8F4E8 0%, #D6EDF5 100%); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(46,43,38,0.06); }
+  .s-num { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--sky-dark); font-weight: 400; margin-bottom: 1.4rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 0.7rem; color: var(--dark); }
+  .service-card p { color: var(--bark); font-size: 0.82rem; line-height: 1.8; font-weight: 300; }
+
+  /* QUOTE */
+  .quote-section { background: linear-gradient(135deg, #EAF2F5 0%, #F2ECD8 100%); padding: 8rem 5%; text-align: center; }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 6rem; line-height: 0.6; color: var(--sky-dark); opacity: 0.5; margin-bottom: 1.5rem; }
+  blockquote { font-family: 'Libre Baskerville', serif; font-size: clamp(1.4rem, 2.8vw, 2.4rem); font-weight: 400; font-style: italic; color: var(--dark); line-height: 1.5; max-width: 720px; margin: 0 auto 2rem; }
+  .quote-attr { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bark); font-weight: 300; }
+
+  /* TRUST BANNER */
+  .trust-banner { background: var(--white); padding: 4rem 5%; border-top: 1px solid var(--warm); border-bottom: 1px solid var(--warm); }
+  .trust-stats { display: flex; justify-content: center; gap: 6rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+  .trust-stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 400; color: var(--dark); line-height: 1; }
+  .trust-stat-label { font-size: 0.72rem; letter-spacing: 1.5px; color: var(--bark); font-weight: 300; margin-top: 0.5rem; max-width: 140px; line-height: 1.5; margin-left: auto; margin-right: auto; }
+  .tag-marquee-wrap { overflow: hidden; }
+  .tag-marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; align-items: center; }
+  .tag-item { font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--bark); font-weight: 300; white-space: nowrap; padding: 0 1.5rem; }
+  .tag-plus { color: var(--sky-dark); font-size: 1.2rem; }
+
+  /* PRICING */
+  #pricing { background: var(--beige); }
+  #pricing .sub { max-width: 420px; margin: 0 auto 4rem; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1000px; margin: 0 auto; text-align: left; }
+  .price-card { background: var(--white); border-radius: 20px; padding: 2.8rem 2.4rem; position: relative; transition: all 0.3s; }
+  .price-card:hover:not(.featured) { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(46,43,38,0.07); }
+  .price-card.featured { background: var(--dark); }
+  .ftag { display: inline-block; background: var(--sky-pale); color: var(--sky-dark); font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.5rem; font-weight: 400; }
+  .price-card.featured .ftag { background: rgba(168,206,219,0.18); color: var(--sky); }
+  .price-name { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bark); margin-bottom: 1rem; font-weight: 400; }
+  .price-card.featured .price-name { color: rgba(255,255,255,0.4); }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 3.6rem; font-weight: 400; line-height: 1; color: var(--dark); }
+  .price-card.featured .price-amount { color: var(--butter); }
+  .price-period { color: var(--bark); font-size: 0.76rem; font-weight: 300; margin-bottom: 2rem; }
+  .price-card.featured .price-period { color: rgba(255,255,255,0.35); }
+  .price-div { border: none; border-top: 1px solid var(--warm); margin-bottom: 1.6rem; }
+  .price-card.featured .price-div { border-color: rgba(255,255,255,0.1); }
+  .price-features { list-style: none; margin-bottom: 2.5rem; }
+  .price-features li { padding: 0.6rem 0; font-size: 0.82rem; font-weight: 300; color: var(--bark); display: flex; gap: 0.8rem; border-bottom: 1px solid var(--warm); }
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.08); }
+  .price-features li::before { content: '–'; color: var(--sky-dark); }
+  .price-card.featured .price-features li::before { color: var(--sky); }
+  .btn-full { width: 100%; text-align: center; display: block; }
+  .btn-sky { background: var(--sky-dark); color: var(--white); padding: 0.95rem; border-radius: 40px; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.2s; text-decoration: none; border: none; }
+  .btn-sky:hover { background: var(--sky); color: var(--dark); }
+  .btn-od { background: transparent; border: 1px solid var(--sand); color: var(--bark); padding: 0.95rem; border-radius: 40px; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 400; transition: all 0.2s; text-decoration: none; }
+  .btn-od:hover { border-color: var(--sky-dark); color: var(--sky-dark); }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+  #contact .sub { max-width: 420px; margin: 0 auto 4rem; }
+  .contact-meta { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .cmeta { text-align: center; }
+  .cmeta-label { font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sky-dark); font-weight: 400; margin-bottom: 0.3rem; }
+  .cmeta-val { font-size: 0.85rem; color: var(--bark); font-weight: 300; }
+  .contact-form { background: var(--beige); border-radius: 24px; padding: 3.5rem; max-width: 680px; margin: 0 auto; text-align: left; }
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label { display: block; color: var(--bark); font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 400; }
+  .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--white); border: 1px solid transparent; border-radius: 10px; color: var(--dark); padding: 0.85rem 1.1rem; font-size: 0.88rem; font-family: 'DM Sans', sans-serif; font-weight: 300; outline: none; transition: border-color 0.2s; resize: none; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--sky-dark); }
+  .form-group select { -webkit-appearance: none; cursor: pointer; }
+  .form-group select option { background: var(--white); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-submit { text-align: center; margin-top: 0.5rem; }
+  .form-success { display: none; text-align: center; padding: 3rem 0; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; font-style: italic; color: var(--sky-dark); }
+  .form-success span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-style: normal; color: var(--bark); margin-top: 0.6rem; font-weight: 300; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 2.8rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); font-weight: 700; }
+  .footer-logo span { color: var(--sky); }
+  footer p { color: rgba(255,255,255,0.22); font-size: 0.7rem; font-weight: 300; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--sky); }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .phil-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 2rem; }
+  }
+  @media (max-width: 580px) {
+    .phil-grid { grid-template-columns: 1fr; }
+    .stat-pills { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">LIMADA<span>.</span><span class="logo-sub">Social Media Agentur</span></div>
+  <ul class="nav-links" style="display:flex;gap:2rem;list-style:none;">
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#philosophy">Ansatz</a></li>
+    <li><a href="#fuerwen">Für wen</a></li>
+    <li><a href="#services">Leistungen</a></li>
+    <li><a href="#pricing">Preise</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob1"></div><div class="blob2"></div><div class="blob3"></div>
+  <div class="hero-eyebrow">Social First Creative Agency</div>
+  <h1>Deine Brand verdient<br>mehr als <em>Reichweite.</em></h1>
+  <p class="hero-desc">Die Social-Media-Agentur für Longevity-, Health- und Mindful-Brands, die echte Verbindung zur stärksten Strategie machen.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">→ Erstgespräch buchen</a>
+    <a href="#services" class="btn-outline">Leistungen entdecken</a>
+  </div>
+
+  <div class="scroll-indicator"><div class="scroll-line"></div></div>
+</section>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Longevity Marketing</div><div class="marquee-item">Health & Wellness</div>
+    <div class="marquee-item">Mindful Brands</div><div class="marquee-item">Brand Storytelling</div>
+    <div class="marquee-item">Community Building</div><div class="marquee-item">Longevity Content</div>
+    <div class="marquee-item">Visual Identity</div><div class="marquee-item">Paid Social</div>
+    <div class="marquee-item">Longevity Marketing</div><div class="marquee-item">Health & Wellness</div>
+    <div class="marquee-item">Mindful Brands</div><div class="marquee-item">Brand Storytelling</div>
+    <div class="marquee-item">Community Building</div><div class="marquee-item">Longevity Content</div>
+    <div class="marquee-item">Visual Identity</div><div class="marquee-item">Paid Social</div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="label">Unser Ansatz</div>
+  <h2 class="title">Nicht Perfektion.<br>Sondern <em>Echtheit.</em></h2>
+
+  <div style="max-width:720px;margin:3rem auto 4rem;text-align:left;background:var(--white);border-radius:20px;padding:3rem 3.5rem;">
+    <p style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;line-height:1.85;color:var(--dark);margin-bottom:1.8rem;">Menschen vergleichen, scrollen, prüfen. Was überzeugt? Nicht Perfektion. Sondern Echtheit.</p>
+    <p style="font-size:0.9rem;font-weight:300;line-height:1.9;color:var(--bark);margin-bottom:1.5rem;">Eine klare Strategie. Visuelle Inhalte mit Atmosphäre. Eine Marke, die nicht nur gesehen, sondern gespürt wird. Besonders in der Longevity- und Health-Welt, wo Vertrauen alles ist. Dafür stehen wir.</p>
+
+  </div>
+
+  <div class="phil-grid">
+    <div class="phil-card"><div class="phil-num">01</div><h3>Vertrauen vor Viralität</h3><p>Jeder Post hat einen Zweck. Wir produzieren keinen Content um des Contents willen.</p></div>
+    <div class="phil-card"><div class="phil-num">02</div><h3>Ästhetik als Sprache</h3><p>Visuelles Storytelling, das die Werte deiner Marke sofort spürbar macht.</p></div>
+    <div class="phil-card"><div class="phil-num">03</div><h3>Echte Verbindung statt leere Interaktion</h3><p>Wir bauen Communities, die bleiben. Echtes Vertrauen wächst nachhaltiger.</p></div>
+    <div class="phil-card"><div class="phil-num">04</div><h3>Klarheit in allem</h3><p>Transparent in Preisen, Prozessen und Ergebnissen – immer und ohne Ausnahme.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div style="background:var(--butter);padding:8rem 5%;text-align:center;" id="about">
+  <div class="label">Über uns</div>
+  <h2 class="title" style="max-width:600px;margin:0 auto 3rem;">Wir glauben nicht an<br>laute Marken. <em>Wir glauben<br>an echte.</em></h2>
+  <div style="max-width:680px;margin:0 auto;text-align:left;display:flex;flex-direction:column;gap:1.5rem;">
+    <p style="font-size:0.92rem;font-weight:300;line-height:1.95;color:var(--dark);">An Marken, die wissen, wofür sie stehen. Die Vertrauen aufbauen statt Aufmerksamkeit zu jagen. Die Menschen berühren – nicht nur erreichen.</p>
+    <p style="font-size:0.92rem;font-weight:300;line-height:1.95;color:var(--dark);">Unsere Arbeit beginnt deshalb nie mit Content. Sie beginnt mit Zuhören. Mit dem Verstehen deiner Vision, deiner Werte und deiner Ziele. Erst daraus entsteht eine Strategie, die trägt. Inhalte, die Sinn ergeben. Und eine Präsenz, die nicht nur sichtbar ist, sondern Wirkung entfaltet.</p>
+    <p style="font-size:0.92rem;font-weight:300;line-height:1.95;color:var(--dark);">Als ganzheitliche Social Media & Content Partner begleiten wir Brands von der strategischen Ausrichtung bis zur visuellen Umsetzung.</p>
+    <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;font-weight:400;color:var(--sky-dark);margin-top:0.5rem;">Wir arbeiten mit Brands, die langfristig wachsen wollen – nicht mit denen, die nur schnelle Reichweite suchen. Let's create something meaningful together.</p>
+  </div>
+
+  <!-- TEAM -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:4rem auto 0;">
+
+    <div style="background:var(--white);border-radius:20px;overflow:hidden;text-align:center;">
+      <div style="width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#EAF2F5,#F2ECD8);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--sand);">D</span>
+      </div>
+      <div style="padding:1.5rem 1.2rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Dani</div>
+        <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--sky-dark);font-weight:400;">Foto- & Videograf</div>
+
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:20px;overflow:hidden;text-align:center;">
+      <div style="width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#F2ECD8,#EEE9E0);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--sand);">M</span>
+      </div>
+      <div style="padding:1.5rem 1.2rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Mara</div>
+        <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--sky-dark);font-weight:400;">Social Media Managerin</div>
+
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:20px;overflow:hidden;text-align:center;">
+      <div style="width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#EEE9E0,#EAF2F5);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--sand);">L</span>
+      </div>
+      <div style="padding:1.5rem 1.2rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Lisa</div>
+        <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--sky-dark);font-weight:400;">Content Creatorin</div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!-- FOR WHOM -->
+<section id="fuerwen" style="background:var(--white);">
+  <div class="label">Für wen wir arbeiten</div>
+  <h2 class="title" style="max-width:700px;margin:0 auto 1.5rem;">Für wen wir arbeiten.</h2>
+  <p class="sub" style="max-width:660px;margin:0 auto 5rem;">Wir gehen in drei Welten in die Tiefe, die wir wirklich verstehen — ihre Zielgruppen, ihre Rhythmen und das, was Menschen teilen lässt.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;max-width:1100px;margin:0 auto;text-align:left;">
+    <div>
+      <div style="font-size:0.65rem;letter-spacing:3px;color:var(--sky-dark);font-weight:500;margin-bottom:1.2rem;">01</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;line-height:1.15;color:var(--dark);margin-bottom:0.2rem;">Health, Wellness</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400;font-style:italic;color:var(--sky-dark);margin-bottom:1.5rem;">&amp; Longevity</h3>
+      <p style="font-size:0.85rem;font-weight:300;line-height:1.85;color:var(--bark);">Praxen, Therapeut:innen sowie Health-, Fitness- und Longevity-Marken, die ruhig, glaubwürdig und wirklich vertrauenswürdig wirken müssen.</p>
+    </div>
+    <div style="border-left:1px solid var(--warm);border-right:1px solid var(--warm);padding:0 3rem;">
+      <div style="font-size:0.65rem;letter-spacing:3px;color:var(--sky-dark);font-weight:500;margin-bottom:1.2rem;">02</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;line-height:1.15;color:var(--dark);margin-bottom:0.2rem;">Personal Brands</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400;font-style:italic;color:var(--sky-dark);margin-bottom:1.5rem;">&amp; Creator</h3>
+      <p style="font-size:0.85rem;font-weight:300;line-height:1.85;color:var(--bark);">Gründer:innen und Creator, die Präsenz und Haltung wollen — ohne zur Vollzeit-Content-Maschine zu werden.</p>
+    </div>
+    <div>
+      <div style="font-size:0.65rem;letter-spacing:3px;color:var(--sky-dark);font-weight:500;margin-bottom:1.2rem;">03</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;line-height:1.15;color:var(--dark);margin-bottom:0.2rem;">E-Commerce</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400;font-style:italic;color:var(--sky-dark);margin-bottom:1.5rem;">&amp; DTC</h3>
+      <p style="font-size:0.85rem;font-weight:300;line-height:1.85;color:var(--bark);">Online- und DTC-Brands, die aus Reichweite Umsatz machen wollen — mit Content, der verkauft, und einer Community, die bleibt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:var(--beige);">
+  <div class="label">Was wir tun</div>
+  <h2 class="title">Von Anfang bis Ende.</h2>
+  <p class="sub" style="max-width:480px;margin:0 auto 4rem;">Ein Team über den gesamten Funnel — damit Feed, Strategie und Werbebudget endlich dieselbe Geschichte erzählen.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="s-num">01</div><h3>Content Strategie</h3><p>Ein klarer Fahrplan, der deine Markenstimme in der Longevity- und Health-Welt findet und konsequent kommuniziert.</p></div>
+    <div class="service-card"><div class="s-num">02</div><h3>Content Creation</h3><p>Hochwertige Foto-, Video- und Textinhalte, die Vertrauen aufbauen – essentiell für Longevity & Wellness Brands.</p></div>
+    <div class="service-card"><div class="s-num">03</div><h3>Community Management</h3><p>Tägliche Pflege deiner Community mit Empathie und deiner unverwechselbaren Stimme.</p></div>
+    <div class="service-card"><div class="s-num">04</div><h3>Paid Social</h3><p>Gezielte Kampagnen auf Meta – präzise ausgesteuert für Health & Longevity Zielgruppen.</p></div>
+    <div class="service-card"><div class="s-num">05</div><h3>Influencer Curation</h3><p>Creator-Partnerschaften aus dem Longevity- und Wellness-Umfeld – wertebasiert, glaubwürdig, passend.</p></div>
+    <div class="service-card"><div class="s-num">06</div><h3>Analytics & Wachstum</h3><p>Klares Reporting ohne Zahlenfriedhöfe. Was zählt, zählen wir.</p></div>
+  </div>
+</section>
+
+
+
+<!-- TRUST BANNER -->
+<div class="trust-banner">
+
+  <div class="tag-marquee-wrap">
+    <div class="tag-marquee-track">
+      <span class="tag-item">Longevity Brands</span><span class="tag-plus">+</span>
+      <span class="tag-item">Praxen & Wellness</span><span class="tag-plus">+</span>
+      <span class="tag-item">Health & Fitness</span><span class="tag-plus">+</span>
+      <span class="tag-item">Longevity</span><span class="tag-plus">+</span>
+      <span class="tag-item">Hotels & Retreats</span><span class="tag-plus">+</span>
+      <span class="tag-item">Personal Brands</span><span class="tag-plus">+</span>
+      <span class="tag-item">Creator</span><span class="tag-plus">+</span>
+      <span class="tag-item">E-Commerce</span><span class="tag-plus">+</span>
+      <span class="tag-item">Longevity Brands</span><span class="tag-plus">+</span>
+      <span class="tag-item">Praxen & Wellness</span><span class="tag-plus">+</span>
+      <span class="tag-item">Health & Fitness</span><span class="tag-plus">+</span>
+      <span class="tag-item">Longevity</span><span class="tag-plus">+</span>
+      <span class="tag-item">Hotels & Retreats</span><span class="tag-plus">+</span>
+      <span class="tag-item">Personal Brands</span><span class="tag-plus">+</span>
+      <span class="tag-item">Creator</span><span class="tag-plus">+</span>
+      <span class="tag-item">E-Commerce</span><span class="tag-plus">+</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="label">Investition</div>
+  <h2 class="title">Transparente Pakete</h2>
+  <p class="sub" style="max-width:420px;margin:0 auto 4rem;">Ohne versteckte Kosten. Ohne Überraschungen. Nur klare Werte.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="ftag">Einstieg</div>
+      <div class="price-name">Foundation</div>
+      <div style="font-size:0.75rem;color:var(--bark);font-weight:300;margin-bottom:1rem;font-style:italic;">Sichtbarkeit aufbauen</div>
+      <div class="price-amount">€ 1.490</div>
+      <div class="price-period">pro Monat</div>
+      <p style="font-size:0.78rem;color:var(--bark);font-weight:300;line-height:1.6;margin-bottom:1.5rem;">Für Kliniken, Praxen & Personal Brands, die professionell starten wollen.</p>
+      <hr class="price-div">
+      <ul class="price-features">
+        <li>1 Kanal (Instagram oder LinkedIn)</li>
+        <li>16 Posts/Monat inkl. Reels</li>
+        <li>Monatliche Strategie-Session</li>
+        <li>Content-Kalender & Briefings</li>
+        <li>Community Management (5×/Woche)</li>
+        <li>Monatliches Performance-Report</li>
+        <li>Paid Social</li>
+        <li>Video Production</li>
+      </ul>
+      <a href="#contact" class="btn-od btn-full">Anfragen ↗</a>
+    </div>
+    <div class="price-card featured">
+      <div class="ftag">Empfohlen</div>
+      <div class="price-name">Authority</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:300;margin-bottom:1rem;font-style:italic;">Expertise skalieren</div>
+      <div class="price-amount">€ 2.990</div>
+      <div class="price-period">pro Monat</div>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.6;margin-bottom:1.5rem;">Für Health-Brands & Startups, die Thought Leadership aufbauen.</p>
+      <hr class="price-div">
+      <ul class="price-features">
+        <li>2 Kanäle (z.B. Instagram + LinkedIn)</li>
+        <li>30 Posts + Reels/Monat</li>
+        <li>Full Video Production (4 Reels/Monat)</li>
+        <li>Paid Social Management (Budget separat)</li>
+        <li>Dedizierte Strategin</li>
+        <li>1 Health Creator-Kooperation/Monat</li>
+        <li>Wöchentliches Reporting + KPI-Dashboard</li>
+        <li>Community Management (täglich)</li>
+      </ul>
+      <a href="#contact" class="btn-sky btn-full">Anfragen ↗</a>
+    </div>
+    <div class="price-card">
+      <div class="ftag">Full-Service</div>
+      <div class="price-name">Signature</div>
+      <div style="font-size:0.75rem;color:var(--bark);font-weight:300;margin-bottom:1rem;font-style:italic;">Marke dominieren</div>
+      <div class="price-amount">Auf Anfrage</div>
+      <div class="price-period"> </div>
+      <p style="font-size:0.78rem;color:var(--bark);font-weight:300;line-height:1.6;margin-bottom:1.5rem;">Für etablierte Longevity-Marken & Supplement-Brands mit Wachstumsambitionen.</p>
+      <hr class="price-div">
+      <ul class="price-features">
+        <li>Alle relevanten Kanäle</li>
+        <li>Full Content Production (Foto + Video)</li>
+        <li>Influencer- & Creator-Management</li>
+        <li>Paid Social inkl. Strategie & Creative</li>
+        <li>Dedicated Account Team</li>
+        <li>Tägliches Reporting & Echtzeit-Dashboard</li>
+        <li>Quarterly Brand Strategy Review</li>
+        <li>Priorisierter Support (Reaktion &lt; 2h)</li>
+      </ul>
+      <a href="#contact" class="btn-od btn-full">Anfragen ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="label">Kontakt</div>
+  <h2 class="title">Lass uns sprechen.</h2>
+  <p class="sub" style="max-width:420px;margin:0 auto 3rem;">Das erste Gespräch ist kostenlos und unverbindlich. Wir hören zu, bevor wir vorschlagen.</p>
+  <div class="contact-meta">
+    <div class="cmeta"><div class="cmeta-label">Mail</div><div class="cmeta-val">hello@limada-creative.de</div></div>
+    <div class="cmeta"><div class="cmeta-label">Telefon</div><div class="cmeta-val">+49 30 000 000 00</div></div>
+    <div class="cmeta"><div class="cmeta-label">Studio</div><div class="cmeta-val">Berlin, Deutschland</div></div>
+  </div>
+  <div class="contact-form">
+    <div id="form-area">
+      <div class="form-row">
+        <div class="form-group"><label>Vorname</label><input type="text" id="fname" placeholder="Lea"></div>
+        <div class="form-group"><label>E-Mail</label><input type="email" id="email" placeholder="lea@deinemarke.de"></div>
+      </div>
+      <div class="form-group"><label>Deine Nachricht</label><textarea id="msg" rows="4" placeholder="Erzähl uns kurz von deiner Marke und was du dir wünschst …"></textarea></div>
+      <div class="form-submit"><button class="btn-primary" onclick="submitForm()">Anfrage senden →</button></div>
+    </div>
+    <div class="form-success" id="form-success">
+      Vielen Dank.
+      <span>Wir melden uns innerhalb von 24 Stunden.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LIMADA<span>.</span></div>
+  <p>© 2026 LIMADA Creative. Alle Rechte vorbehalten.</p>
+  <div class="footer-links">
+    <a href="#">Impressum</a><a href="#">Datenschutz</a>
+    <a href="#">Instagram</a><a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!fname || !email) { alert('Bitte füll mindestens Name und E-Mail aus.'); return; }
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
