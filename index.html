@@ -50,8 +50,8 @@
   .hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 4.5vw, 4.5rem); font-weight: 400; line-height: 1.2; color: #fff; margin-bottom: 2rem; }
   .hero h1 em { font-style: italic; color: var(--yellow); }
   .hero-desc { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.95; font-weight: 300; max-width: 440px; margin: 0 auto 3rem; }
-  .hero-btn { background: var(--yellow); color: var(--dark); padding: 1rem 3rem; border: none; border-radius: 2px; font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; font-weight: 500; transition: all 0.2s; text-decoration: none; display: inline-block; }
-  .hero-btn:hover { opacity: 0.85; }
+  .hero-btn { background: #F0D98C; color: var(--dark); padding: 1rem 3rem; border: none; border-radius: 2px; font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; font-weight: 500; transition: all 0.25s ease; text-decoration: none; display: inline-block; }
+  .hero-btn:hover { background: #ECCF6E; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236,207,110,0.4); }
   .scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--green), transparent); margin: 4rem auto 0; animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
 
@@ -129,7 +129,7 @@
   .acc-icon { font-size: 1.4rem; font-weight: 200; color: var(--stone); transition: transform 0.3s, color 0.2s; font-family: 'Jost', sans-serif; flex-shrink: 0; }
   .acc-btn.open .acc-icon { transform: rotate(45deg); color: var(--green); }
   .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; font-size: 0.88rem; line-height: 1.9; color: var(--taupe); font-weight: 300; padding: 0; }
-  .acc-body.open { max-height: 200px; padding-bottom: 1.8rem; }
+  .acc-body.open { max-height: 320px; padding-bottom: 1.8rem; }
 
 
   .contact-meta { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin-bottom: 4rem; }
@@ -137,9 +137,9 @@
   .c-val { font-size: 0.85rem; color: var(--bark); font-weight: 300; }
   .contact-form { background: #F5EAC8; border: 1px solid rgba(200,191,176,0.5); border-radius: 16px; padding: 4rem; max-width: 640px; margin: 0 auto; text-align: left; box-shadow: 0 4px 32px rgba(180,160,120,0.08); }
   .fg { margin-bottom: 0; border-bottom: 1px solid rgba(200,191,176,0.4); }
-  .fg label { display: block; color: var(--stone); font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; padding-top: 1.4rem; font-weight: 300; }
-  .fg input, .fg textarea { width: 100%; background: transparent; border: none; color: var(--dark); padding: 0.5rem 0 1.2rem; font-size: 0.92rem; font-family: 'Jost', sans-serif; font-weight: 300; outline: none; resize: none; letter-spacing: 0.3px; }
-  .fg input::placeholder, .fg textarea::placeholder { color: rgba(200,191,176,0.8); }
+  .fg label { display: block; color: var(--bark); font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; padding-top: 1.4rem; font-weight: 500; }
+  .fg input, .fg textarea { width: 100%; background: transparent; border: none; color: var(--dark); padding: 0.5rem 0 1.2rem; font-size: 0.92rem; font-family: 'Jost', sans-serif; font-weight: 400; outline: none; resize: none; letter-spacing: 0.3px; }
+  .fg input::placeholder, .fg textarea::placeholder { color: var(--taupe); }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
   .form-success { display: none; text-align: center; padding: 3rem 0; font-family: 'Libre Baskerville', serif; font-size: 2rem; font-weight: 400; font-style: italic; color: var(--blue); }
   .form-success span { display: block; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-style: normal; color: var(--taupe); margin-top: 0.8rem; font-weight: 300; }
@@ -284,42 +284,42 @@
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>Social Media Management</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Vollständige Betreuung deiner Kanäle – von der Planung bis zur Umsetzung, alles aus einer Hand.</div>
+      <div class="acc-body">Vollständige Betreuung deiner Kanäle – von der Planung bis zur Umsetzung, alles aus einer Hand. Wir begleiten deinen gesamten Social-Media-Auftritt – von Redaktionsplanung bis Community-Betreuung. Strukturiert, konsistent und mit einem klaren Ziel: eine Präsenz, die Vertrauen aufbaut und nachhaltig wächst.</div>
     </div>
 
     <div class="acc-item">
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>Content Strategie</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Ein klarer Fahrplan, der deine Markenstimme findet und konsequent kommuniziert.</div>
+      <div class="acc-body">Ein klarer Fahrplan, der deine Markenstimme findet und konsequent kommuniziert. Wir entwickeln eine klare Marken- und Content-Strategie, die nicht nur auf Trends basiert, sondern auf Werten, Positionierung und echter Verbindung. Fundiert, individuell und langfristig gedacht.</div>
     </div>
 
     <div class="acc-item">
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>Content Creation</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Hochwertige Foto-, Video- und Textinhalte, die Vertrauen aufbauen.</div>
+      <div class="acc-body">Hochwertige Foto-, Video- und Textinhalte, die Vertrauen aufbauen. Wir konzipieren und produzieren Inhalte, die deine Marke fühlbar machen. Authentisch, hochwertig und strategisch eingebettet – damit jedes Stück Content einen Zweck erfüllt und deine Geschichte weitererzählt.</div>
     </div>
 
     <div class="acc-item">
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>Community Management</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Tägliche Pflege deiner Community mit Empathie und deiner Stimme.</div>
+      <div class="acc-body">Tägliche Pflege deiner Community mit Empathie und deiner Stimme. Wir betreuen Kommentare, Nachrichten und Reaktionen verlässlich und im richtigen Ton – damit aus Followern echte Fans werden, die sich gehört und wertgeschätzt fühlen.</div>
     </div>
 
     <div class="acc-item">
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>UGC</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Authentische Creator-Inhalte – wertebasiert und glaubwürdig.</div>
+      <div class="acc-body">Authentische Creator-Inhalte – wertebasiert und glaubwürdig. Wir kuratieren und koordinieren Kooperationen mit Creator:innen, die zu deinen Werten passen. Inhalte, die nicht nach Werbung aussehen, sondern wie echte Empfehlungen wirken – und genau deshalb funktionieren.</div>
     </div>
 
     <div class="acc-item" style="border-bottom:1px solid var(--sand);">
       <button class="acc-btn" onclick="toggleAcc(this)">
         <span>Analytics & Wachstum</span><span class="acc-icon">+</span>
       </button>
-      <div class="acc-body">Klares Reporting ohne Zahlenfriedhöfe. Was zählt, zählen wir.</div>
+      <div class="acc-body">Klares Reporting ohne Zahlenfriedhöfe. Was zählt, zählen wir. Wir analysieren, was wirkt – und warum. Mit klaren KPI-Strukturen, datenbasierter Optimierung und regelmäßigen Auswertungen sorgen wir dafür, dass Strategie und Content nicht nur gut aussehen, sondern messbare Ergebnisse erzielen.</div>
     </div>
 
   </div>
